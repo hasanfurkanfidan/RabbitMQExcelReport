@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<UserFile>
+<h1>Files</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>File Name</th>
+            <th>Created Date</th>
+            <th>File Status</th>
+            <th>Download</th>
+        </tr>
+    </thead>
+    @foreach (var userFile in Model)
+    {
+        <tr>
+            <td>@userFile.FileName</td>
+            <td>@userFile.GetCreatedDate</td>
+            <td>@userFile.FileStatus</td>
+            <td>
+                <a href="~/files/@userFile.FilePath" class="btn btn-primary @(userFile.FileStatus == FileStatus.Creating?"disabled":string.Empty)">Download</a>
+            </td>
+        </tr>
+    }
+</table>
