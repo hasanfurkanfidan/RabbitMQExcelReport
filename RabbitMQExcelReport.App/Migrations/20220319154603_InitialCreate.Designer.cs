@@ -10,7 +10,7 @@ using RabbitMQExcelReport.App.Models;
 namespace RabbitMQExcelReport.App.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220312225944_InitialCreate")]
+    [Migration("20220319154603_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
