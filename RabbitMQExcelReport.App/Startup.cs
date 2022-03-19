@@ -25,8 +25,8 @@ namespace RabbitMQExcelReport.App
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(sp => new ConnectionFactory() { Uri = new Uri(Configuration.GetConnectionString("RabbitMQ")), DispatchConsumersAsync = true });
-            services.AddSingleton<RabbitMQClientService>();
-
+            services.AddSingleton<RabbitMqClientService>();
+            services.AddSingleton<RabbitMqPublisher>();
             services.AddIdentity<IdentityUser, IdentityRole>(opt =>
             {
                 opt.User.RequireUniqueEmail = true;

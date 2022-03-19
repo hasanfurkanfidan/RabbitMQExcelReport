@@ -1,11 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using RabbitMQ.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace RabbitMQExcelReport.App.Services
+namespace FileCreateWorkerService.Services
 {
     public class RabbitMqClientService
     {
@@ -29,9 +25,6 @@ namespace RabbitMQExcelReport.App.Services
 
             _channel = _connection.CreateModel();
 
-            _channel.ExchangeDeclare(ExchangeName, type: "direct", true, false);
-            _channel.QueueDeclare(QueueName, true, false, false, null);
-            _channel.QueueBind(QueueName, ExchangeName, RoutingExcel);
             _logger.LogInformation("Rabbit MQ ile bağlantı oluşturuldu");
             return _channel;
         }
