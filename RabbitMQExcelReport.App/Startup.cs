@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RabbitMQ.Client;
+using RabbitMQExcelReport.App.Hubs;
 using RabbitMQExcelReport.App.Models;
 using RabbitMQExcelReport.App.Services;
 using System;
@@ -33,6 +34,7 @@ namespace RabbitMQExcelReport.App
             }).AddEntityFrameworkStores<AppDbContext>();
 
             services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+            services.AddSignalR();
             services.AddControllersWithViews();
         }
 
@@ -58,6 +60,7 @@ namespace RabbitMQExcelReport.App
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<MyHub>("/MyHub");
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

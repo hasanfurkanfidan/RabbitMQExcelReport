@@ -48,6 +48,7 @@ namespace FileCreateWorkerService
 
         private async Task Consumer_Received(object sender, BasicDeliverEventArgs @event)
         {
+            Thread.Sleep(7000);
             var createExcelMessage = JsonSerializer.Deserialize<CreateExcelMessage>(Encoding.UTF8.GetString(@event.Body.ToArray()));
             using var ms = new MemoryStream();
 
